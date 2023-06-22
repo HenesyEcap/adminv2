@@ -8,6 +8,7 @@ import Book from './assets/pages/Book';
 import Cancel from './assets/pages/Cancel';
 import Login from './assets/pages/Login';
 import WelcomePage from './assets/pages/WelcomePage';
+import BookingInfo from './assets/pages/BookingInfo';
 
   
 const App = () => {
@@ -23,7 +24,6 @@ const App = () => {
    
     <BrowserRouter>
       <div className='App'>
-        <Header/>
         <Routes>
           <Route index path="/" element={<Home/>} />
           <Route path="/trains" element={<Train/>} />
@@ -31,7 +31,9 @@ const App = () => {
           <Route path="/cancel" element={<Cancel/>} />
           <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
           <Route path="/WelcomePage" element={<WelcomePage handleLogout={handleLogout} />} />
+          <Route path="/BookingInfo" element={<BookingInfo handleLogout={handleLogout} />} />
         </Routes>
+        
       </div>
     
       </BrowserRouter>

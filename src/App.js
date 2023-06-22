@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LoginForm from './LoginForm';
 import WelcomePage from './WelcomePage';
-import BookingInfo from './assets/pages/BookingInfo';
+import BookingInfo from './BookingInfo';
 
 function App() {
   const [, setIsLoggedIn] = useState(false);
