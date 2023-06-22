@@ -43,7 +43,7 @@ function BookingInfo() {
           style={{
             backgroundColor: '#ffffff',
             color: '#333333',
-            padding: '10px 30px',
+            padding: '10px 40px',
             border: 'none',
             borderRadius: '4px',
             fontSize: '16px',

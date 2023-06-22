@@ -60,11 +60,13 @@ body {
 
 /* Styles for the dropdown button */
 .dropbtn {
-  background: #a1b6afbb;
+  background: #0bdc96bb;
   border: none;
-  font-size: 17px;
+  font-size: 18px;
   padding: 17px;
   color: #fff;
+  height: 50px;
+  width: 200px;
 }
 
 /* Styles for the dropdown container */
@@ -77,7 +79,7 @@ body {
 .dropdown-content {
   display: none;
   background: #f1f1f1;
-  min-width: 160px;
+  min-width: 200px;
   position: absolute;
   z-index: 1;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
@@ -90,11 +92,13 @@ body {
   text-decoration: none;
   padding: 17px;
   font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif
 }
 
 /* Styles for the dropdown links on hover */
 .dropdown-content a:hover {
-  background: #ddd;
+  background: #bcb9b9;
+
 }
 
 /* Show the dropdown menu when hovering over the dropdown container */
@@ -104,5 +108,5 @@ body {
 
 /* Change the background color of the dropdown button when hovering over the dropdown container */
 .dropdown:hover .dropbtn {
-  background: #3e8341;
+  background: #d56060;
 }

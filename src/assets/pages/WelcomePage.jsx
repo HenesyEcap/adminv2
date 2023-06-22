@@ -18,9 +18,9 @@ function WelcomePage() {
       <nav className="navbar">
         <div className="navbar-left">
           <div className="dropdown">
-            <button className="dropbtn">menu</button>
+            <button className="dropbtn">MENU</button>
             <div className="dropdown-content">
-              <Link to="/BookingInfo">Booking</Link>
+              <Link to="/BookingInfo">Booking Info</Link>
               <a href="#home">Link2</a>
               <a href="#home">Link3</a>
               <a href="#home">Link4</a>
@@ -38,8 +38,8 @@ function WelcomePage() {
         </div>
       </nav>
 
-      <div className="welcome-page-main">
-        <h1>Welcome to the Dashboard</h1>
+      <div className="welcome-page-main" style={{ textAlign: 'center', backgroundColor: '#f2f2f2', padding: '20px' }} >
+        <h1 style={{ fontSize: '24px', color: '#333333', fontWeight: 'bold' }} >Welcome to the Dashboard</h1>
         <Routes>
           <Route path="/booking-info" element={<BookingInfo />} />
           <Route path="/" element={<Trainlist />} />
