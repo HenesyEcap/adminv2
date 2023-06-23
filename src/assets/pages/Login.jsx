@@ -34,97 +34,47 @@ const Login = ({ setIsLoggedIn }) => {
   };
 
   return (
-    <div style={styles.container}>
-      <h1 style={styles.heading}>Admin Login</h1>
-      <form onSubmit={handleLogin}>
-        <div
-          style={{
-            ...styles.formGroup,
-            animation: shakeAnimation ? 'shake 0.5s' : 'none',
-          }}
-        >
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={handleUsernameChange}
-            style={styles.inputField}
-          />
-        </div>
-        <div
-          style={{
-            ...styles.formGroup,
-            animation: shakeAnimation ? 'shake 0.5s' : 'none',
-          }}
-        >
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={handlePasswordChange}
-            style={styles.inputField}
-          />
-        </div>
-        {errorMessage && <p style={styles.errorMessage}>{errorMessage}</p>}
-        <button type="submit" style={styles.loginButton}>
-          Log In
-        </button>
-      </form>
+    <div className="flex items-center justify-center h-screen bg-gray-100">
+      <div className="bg-white p-8 rounded shadow">
+        <h1 className="mb-6 text-2xl font-bold text-center text-orange-500">
+          Admin Login
+        </h1>
+        <form onSubmit={handleLogin}>
+          <div
+            className={`mb-6 ${shakeAnimation ? 'animate-shake' : ''}`}
+          >
+            <input
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={handleUsernameChange}
+              className="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
+            />
+          </div>
+          <div
+            className={`mb-6 ${shakeAnimation ? 'animate-shake' : ''}`}
+          >
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={handlePasswordChange}
+              className="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
+            />
+          </div>
+          {errorMessage && (
+            <p className="mb-4 text-red-500 text-center">{errorMessage}</p>
+          )}
+          <button
+            type="submit"
+            className="w-1/2 px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600 focus:outline-none"
+          >
+            Log In
+          </button>
+        </form>
+      </div>
     </div>
   );
-};
-
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    minHeight: '100vh',
-    backgroundColor: '#f0f2f5',
-    padding: '20px',
-    borderRadius: '8px',
-    boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.1)',
-  },
-  heading: {
-    marginBottom: '20px',
-    color: 'orange',
-    fontSize: '24px',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  formGroup: {
-    width: '100%',
-    marginBottom: '15px',
-  },
-  inputField: {
-    width: '100%',
-    padding: '12px',
-    border: '1px solid #dddfe2',
-    borderRadius: '5px',
-    fontSize: '14px',
-    backgroundColor: '#f0f2f5',
-    outline: 'none',
-  },
-  errorMessage: {
-    marginTop: '10px',
-    color: 'red',
-    fontSize: '14px',
-    textAlign: 'center',
-  },
-  loginButton: {
-    width: '50%',
-    padding: '12px',
-    backgroundColor: '#1877f2',
-    border: 'none',
-    color: '#ffffff',
-    borderRadius: '5px',
-    fontSize: '14px',
-    fontWeight: 'bold',
-    cursor: 'pointer',
-    outline: 'none',
-    transition: 'background-color 0.3s',
-  },
 };
 
 export default Login;
