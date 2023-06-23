@@ -9,6 +9,8 @@ import Cancel from './assets/pages/Cancel';
 import Login from './assets/pages/Login';
 import WelcomePage from './assets/pages/WelcomePage';
 import BookingInfo from './assets/pages/BookingInfo';
+import AnalyticsComponent from './assets/pages/AnalyticsComponent';
+
 
   
 const App = () => {
@@ -32,6 +34,7 @@ const App = () => {
           <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
           <Route path="/WelcomePage" element={<WelcomePage handleLogout={handleLogout} />} />
           <Route path="/BookingInfo" element={<BookingInfo handleLogout={handleLogout} />} />
+          <Route path="/AnalyticsComponent" element={<AnalyticsComponent handleLogout={handleLogout} />} />
         </Routes>
         
       </div>

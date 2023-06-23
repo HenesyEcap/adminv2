@@ -18,10 +18,10 @@ function WelcomePage() {
       <nav className="navbar">
         <div className="navbar-left">
           <div className="dropdown">
-            <button className="dropbtn">MENU</button>
+            <button className="dropbtn">TRAIN MENU</button>
             <div className="dropdown-content">
               <Link to="/BookingInfo">Booking Info</Link>
-              <a href="#home">Link2</a>
+              <Link to="/AnalyticsComponent">AnalyticsComponent</Link>
               <a href="#home">Link3</a>
               <a href="#home">Link4</a>
             </div>

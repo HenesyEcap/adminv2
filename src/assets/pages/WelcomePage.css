@@ -60,7 +60,7 @@ body {
 
 /* Styles for the dropdown button */
 .dropbtn {
-  background: #0bdc96bb;
+  background:transparent;
   border: none;
   font-size: 18px;
   padding: 17px;
@@ -107,6 +107,4 @@ body {
 }
 
 /* Change the background color of the dropdown button when hovering over the dropdown container */
-.dropdown:hover .dropbtn {
-  background: #d56060;
-}
+

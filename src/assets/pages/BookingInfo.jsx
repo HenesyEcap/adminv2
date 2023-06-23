@@ -12,52 +12,38 @@ function BookingInfo() {
       .catch(err => console.log(err));
   }, []);
 
-  const handleCancelBooking = (ticketId) => {
-    axios
-      .post("http://localhost/api/cancel-booking.php", { ticketId })
-      .then(res => {
-        console.log(`Booking with ticket ID ${ticketId} has been canceled.`);
-        setData(data.filter(passenger => passenger.TicketID !== ticketId));
-      })
-      .catch(err => {
-        console.log(`Failed to cancel booking with ticket ID ${ticketId}.`, err);
-      });
-  };
-
   const handleUpdateBooking = (ticketId) => {
-    axios
-      .put("http://localhost/api/update-booking.php", { ticketId })
-      .then(res => {
-        console.log(`Booking with ticket ID ${ticketId} has been updated.`);
-        // Perform any necessary updates in the UI after a successful update
-      })
-      .catch(err => {
-        console.log(`Failed to update booking with ticket ID ${ticketId}.`, err);
-      });
+    const reservationStatus = prompt("Enter the new reservation status (reserved, pending, cancel):");
+
+    if (reservationStatus) {
+      axios
+        .put("http://localhost/api/update-booking.php", { ticketId, reservationStatus })
+        .then(res => {
+          console.log(`Booking with ticket ID ${ticketId} has been updated.`);
+          // Perform any necessary updates in the UI after a successful update
+        })
+        .catch(err => {
+          console.log(`Failed to update booking with ticket ID ${ticketId}.`, err);
+        });
+    }
   };
 
   return (
     <>
-      <Link to="/WelcomePage">
-        <button
-          style={{
-            backgroundColor: '#ffffff',
-            color: '#333333',
-            padding: '10px 40px',
-            border: 'none',
-            borderRadius: '4px',
-            fontSize: '16px',
-          }}
-        >
-          Back
-        </button>
-      </Link>
-      <div className="container mt-4 w-full h-full">
-        <div className="trainlist pt-3 text-2xl font-bold ml-8 place-content-center">
+    
+      <div className="container mx-auto mt-8">
+        <div className="text-2xl font-bold text-center mb-6">
           <h1>Passenger's Booking Information</h1>
         </div>
+        <div className="flex justify-end mr-8 mt-4">
+        <Link to="/WelcomePage">
+          <button className="bg-white text-gray-900 px-6 py-2 rounded-md text-lg">
+            Back
+          </button>
+        </Link>
+      </div>
         <div className="flex justify-center px-10">
-          <table className="w-full mb-10">
+          <table className="w-full">
             <thead className="bg-gray-200">
               <tr>
                 <th className="p-3 text-sm font-bold">#</th>
@@ -75,7 +61,7 @@ function BookingInfo() {
             </thead>
             <tbody>
               {data.map((passenger, index) => (
-                <tr key={index}>
+                <tr key={index} className={index % 2 === 0 ? 'bg-gray-100' : 'bg-white'}>
                   <td className="p-3">{passenger.TicketID}</td>
                   <td className="p-3">{passenger.TrainNumber}</td>
                   <td className="p-3">{passenger.TrainDate}</td>
@@ -88,29 +74,8 @@ function BookingInfo() {
                   <td className="p-3">{passenger.Category}</td>
                   <td className="p-3">
                     <button
-                      onClick={() => handleCancelBooking(passenger.TicketID)}
-                      style={{
-                        backgroundColor: '#ff0000',
-                        color: '#ffffff',
-                        padding: '10px 20px',
-                        border: 'none',
-                        borderRadius: '4px',
-                        fontSize: '16px',
-                        marginRight: '10px',
-                      }}
-                    >
-                      Cancel
-                    </button>
-                    <button
                       onClick={() => handleUpdateBooking(passenger.TicketID)}
-                      style={{
-                        backgroundColor: '#333333',
-                        color: '#ffffff',
-                        padding: '10px 20px',
-                        border: 'none',
-                        borderRadius: '4px',
-                        fontSize: '16px',
-                      }}
+                      className="bg-gray-900 text-white px-4 py-2 rounded-md text-lg"
                     >
                       Update
                     </button>

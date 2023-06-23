@@ -1,98 +1,87 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import 'tailwindcss/tailwind.css';
 
-const Trainlist = () => {
-  const [data, setData] = useState([]);
+function TrainList() {
+  const [trains, setTrains] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost/api/trainlist.php")
-      .then((res) => setData(res.data))
+      .get('http://localhost/api/trainlist.php')
+      .then((res) => setTrains(res.data))
       .catch((err) => console.log(err));
   }, []);
 
-  const handleEdit = (trainId) => {
-    // Fetch the train details based on trainId and perform edit logic
-    // Update the data state with the edited train
-    console.log("Edit train with ID:", trainId);
-  };
+  const handleUpdateTrain = (trainNumber) => {
+    const destination = prompt('Enter the new destination:');
+    const acFare = prompt('Enter the new AC fare:');
+    const generalFare = prompt('Enter the new general fare:');
 
-  const handleDelete = (trainId) => {
-    // Perform delete logic
-    // Update the data state by removing the deleted train
-    console.log("Delete train with ID:", trainId);
+    if (destination && acFare && generalFare) {
+      axios
+        .put('http://localhost/api/updateTrain.php', {
+          trainNumber,
+          destination,
+          acFare,
+          generalFare,
+        })
+        .then((res) => {
+          console.log(`Train with number ${trainNumber} has been updated.`);
+          // Perform any necessary updates in the UI after a successful update
+        })
+        .catch((err) => {
+          console.log(`Failed to update train with number ${trainNumber}.`, err);
+        });
+    }
   };
 
   return (
-    <div className="bg-white-400 w-full h-full">
-      <div className="trainlist pt-3 text-2xl font-bold ml-8 place-content-center">
-        <h1 className="text-emerald-900">Train List Available</h1>
+    <div className="container mx-auto mt-4">
+      <div className="trainlist pt-3 text-2xl font-bold ml-8 text-center">
+        <h1>Train List</h1>
       </div>
-      <div className="flex place-content-center px-10">
-        <table className="w-full mb-10">
-          <thead className="bg-emerald-400 border-b-2 border-gray-200">
+      <div className="flex justify-center px-10">
+        <table className="w-full mb-10 border border-gray-300">
+          <thead className="bg-gray-200">
             <tr>
-              <th className="w-28 p-3 text-sm font-bold tracking-wid text-left">
-                #
-              </th>
-              <th className="w-26 p-3 text-sm font-bold tracking-wide text-left">
-                Train Name
-              </th>
-              <th className="w-26 p-3 text-sm font-bold tracking-wide text-left">
-                Source
-              </th>
-              <th className="w-26 p-3 text-sm font-bold tracking-wide text-left">
-                Destination
-              </th>
-              <th className="w-30 p-3 text-sm font-bold tracking-wide text-left">
-                AC Fare
-              </th>
-              <th className="w-30 p-3 text-sm font-bold tracking-wide text-left">
-                General Fare
-              </th>
-              <th className="p-3 text-sm font-bold tracking-wide text-left">
-                Weekdays Available
-              </th>
-              <th className="p-3 text-sm font-bold tracking-wide text-left">
-                Actions
-              </th>
+              <th className="p-3 text-sm font-bold">Train Number</th>
+              <th className="p-3 text-sm font-bold">Train Name</th>
+              <th className="p-3 text-sm font-bold">Source</th>
+              <th className="p-3 text-sm font-bold">Destination</th>
+              <th className="p-3 text-sm font-bold">AC Fare</th>
+              <th className="p-3 text-sm font-bold">General Fare</th>
+              <th className="p-3 text-sm font-bold">Weekdays Available</th>
+              <th className="p-3 text-sm font-bold">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {data.map((train, index) => {
-              return (
-                <tr key={index} className="bg-white">
-                  <td className="p-4 text-sky-600 font-semibold">
-                    {train.TrainNumber}
-                  </td>
-                  <td>{train.TrainName}</td>
-                  <td>{train.Source}</td>
-                  <td>{train.Destination}</td>
-                  <td>{train.AC_Fare}</td>
-                  <td>{train.General_Fare}</td>
-                  <td>{train.WeekdaysAvailable}</td>
-                  <td>
-                    <button
-                      onClick={() => handleEdit(train.id)}
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={() => handleDelete(train.id)}
-                      className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
+            {trains.map((train, index) => (
+              <tr
+                key={train.TrainNumber}
+                className={`${index % 2 === 0 ? 'bg-gray-100' : 'bg-white'}`}
+              >
+                <td className="p-3">{train.TrainNumber}</td>
+                <td className="p-3">{train.TrainName}</td>
+                <td className="p-3">{train.Source}</td>
+                <td className="p-3">{train.Destination}</td>
+                <td className="p-3">{train.AC_Fare}</td>
+                <td className="p-3">{train.General_Fare}</td>
+                <td className="p-3">{train.WeekdaysAvailable}</td>
+                <td className="p-3">
+                  <button
+                    onClick={() => handleUpdateTrain(train.TrainNumber)}
+                    className="bg-gray-800 text-white px-4 py-2 rounded-md text-base"
+                  >
+                    Update
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
     </div>
   );
-};
+}
 
-export default Trainlist;
+export default TrainList;
