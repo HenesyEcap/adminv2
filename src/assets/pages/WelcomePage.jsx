@@ -21,7 +21,6 @@ function WelcomePage() {
             <button className="dropbtn">TRAIN MENU</button>
             <div className="dropdown-content">
               <Link to="/BookingInfo">Booking Info</Link>
-              <Link to="/AnalyticsComponent">AnalyticsComponent</Link>
               <a href="#home">Link3</a>
               <a href="#home">Link4</a>
             </div>
