@@ -13,9 +13,9 @@ function TrainList() {
   }, []);
 
   const handleUpdateTrain = (trainNumber) => {
-    const destination = prompt('Enter the new destination:');
-    const acFare = prompt('Enter the new AC fare:');
-    const generalFare = prompt('Enter the new general fare:');
+    const destination = prompt('ENTER NEW DESTINATION:');
+    const acFare = prompt('ENTER NEW AC FARE:');
+    const generalFare = prompt('ENTER NEW GEN FARE:');
 
     if (destination && acFare && generalFare) {
       axios
@@ -48,8 +48,8 @@ function TrainList() {
               <th className="p-3 text-sm font-bold">Train Name</th>
               <th className="p-3 text-sm font-bold">Source</th>
               <th className="p-3 text-sm font-bold">Destination</th>
-              <th className="p-3 text-sm font-bold">AC Fare</th>
-              <th className="p-3 text-sm font-bold">General Fare</th>
+              <th className="p-3 text-sm font-bold">AC Fare </th>
+              <th className="p-3 text-sm font-bold">General Fare </th>
               <th className="p-3 text-sm font-bold">Weekdays Available</th>
               <th className="p-3 text-sm font-bold">Actions</th>
             </tr>
@@ -64,8 +64,8 @@ function TrainList() {
                 <td className="p-3">{train.TrainName}</td>
                 <td className="p-3">{train.Source}</td>
                 <td className="p-3">{train.Destination}</td>
-                <td className="p-3">{train.AC_Fare}</td>
-                <td className="p-3">{train.General_Fare}</td>
+                <td className="p-3">₱{train.AC_Fare}</td>
+                <td className="p-3">₱{train.General_Fare}</td>
                 <td className="p-3">{train.WeekdaysAvailable}</td>
                 <td className="p-3">
                   <button

@@ -18,7 +18,7 @@ function BookingInfo() {
   }, []);
 
   const handleUpdateBooking = (ticketId) => {
-    const reservationStatus = prompt("Enter the new reservation status (reserved, pending, cancel):");
+    const reservationStatus = prompt("RESERVATION STATUS : *RESERVED, *PENDING, *CANCELED):");
 
     if (reservationStatus) {
       axios

@@ -85,8 +85,8 @@ const Train = () => {
                   <td>{train.TrainName}</td>
                   <td>{train.Source}</td>
                   <td>{train.Destination}</td>
-                  <td>{train.AC_Fare}</td>
-                  <td>{train.General_Fare}</td>
+                  <td>₱{train.AC_Fare}</td> {/* Added peso sign */}
+                  <td>₱{train.General_Fare}</td> {/* Added peso sign */}
                   <td>{train.WeekdaysAvailable}</td>
                 </tr>
               ))}
