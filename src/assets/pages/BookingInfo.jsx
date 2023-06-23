@@ -4,11 +4,16 @@ import { Link } from 'react-router-dom';
 
 function BookingInfo() {
   const [data, setData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     axios
       .get("http://localhost/api/passenger.php")
-      .then(res => setData(res.data))
+      .then(res => {
+        setData(res.data);
+        setSearchResults(res.data);
+      })
       .catch(err => console.log(err));
   }, []);
 
@@ -28,20 +33,36 @@ function BookingInfo() {
     }
   };
 
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+    const results = data.filter(passenger => passenger.TicketID.includes(event.target.value));
+    setSearchResults(results);
+  };
+
   return (
     <>
-    
-      <div className="container mx-auto mt-8">
-        <div className="text-2xl font-bold text-center mb-6">
+      <div className="flex justify-between items-center ml-8 mr-8 mt-4">
+        <div>
+          <input
+            type="text"
+            className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-200"
+            placeholder="Search by TicketID"
+            value={searchTerm}
+            onChange={handleSearch}
+          />
+        </div>
+        <div className="text-2xl font-bold">
           <h1>Passenger's Booking Information</h1>
         </div>
-        <div className="flex justify-end mr-8 mt-4">
-        <Link to="/WelcomePage">
-          <button className="bg-white text-gray-900 px-6 py-2 rounded-md text-lg">
-            Back
-          </button>
-        </Link>
+        <div>
+          <Link to="/WelcomePage">
+            <button className="bg-dark text-gray-900 px-6 py-2 rounded-md text-lg">
+              Back
+            </button>
+          </Link>
+        </div>
       </div>
+      <div className="container mx-auto mt-8">
         <div className="flex justify-center px-10">
           <table className="w-full">
             <thead className="bg-gray-200">
@@ -60,7 +81,7 @@ function BookingInfo() {
               </tr>
             </thead>
             <tbody>
-              {data.map((passenger, index) => (
+              {searchResults.map((passenger, index) => (
                 <tr key={index} className={index % 2 === 0 ? 'bg-gray-100' : 'bg-white'}>
                   <td className="p-3">{passenger.TicketID}</td>
                   <td className="p-3">{passenger.TrainNumber}</td>
